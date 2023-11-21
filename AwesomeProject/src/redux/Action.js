@@ -1,6 +1,7 @@
 export const USERID = 'USERID';
 export const USERINFO = 'USERINFO';
 export const PROFILEINFO = 'PROFILEINFO';
+export const USEREMAIL = 'USEREMAIL';
 
 export const userAction = payload => {
   return {
@@ -17,6 +18,13 @@ export const userInFOAction = payload => {
 };
 
 export const profileDetails = payload => {
+  return {
+    type: PROFILEINFO,
+    payload: payload,
+  };
+};
+
+export const userEmail = payload => {
   return {
     type: PROFILEINFO,
     payload: payload,

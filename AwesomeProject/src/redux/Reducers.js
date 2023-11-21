@@ -1,4 +1,4 @@
-const {USERID, USERINFO, PROFILEINFO} = require('./Action');
+const {USERID, USERINFO, PROFILEINFO, USEREMAIL} = require('./Action');
 
 const initialState = {
   userID: '',
@@ -12,6 +12,9 @@ const initialState = {
     name: '',
     address: '',
     pincode: '',
+  },
+  userEmail: {
+    userName: '',
   },
 };
 

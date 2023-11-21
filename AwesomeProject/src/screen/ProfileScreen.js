@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {color} from '../Constants/Colors';
 import ProfileSectionView from '../components/ProfileSectionView';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const ProfileScreen = () => {
   const [img, setImg] = useState(null);
@@ -19,6 +20,7 @@ const ProfileScreen = () => {
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const userName = useSelector(state => state.userName);
 
   const navigation = useNavigation();
 
@@ -60,9 +62,16 @@ const ProfileScreen = () => {
       });
   };
 
+  const initialLoad = async () => {
+    // Log the value of userName
+    console.log('Profile Screen UserName:', userName);
+    setName(userName);
+  };
+
   useEffect(() => {
     // Retrieve the image URI from AsyncStorage
     getImageProfile();
+    initialLoad();
   }, []);
 
   return (
@@ -109,7 +118,7 @@ const ProfileScreen = () => {
 
         <TouchableOpacity
           style={styles.completeProfileView}
-          onPress={() => navigation.navigate('TopTabBiew')}>
+          onPress={() => navigation.navigate('DoctorDetailsScreen')}>
           <Text style={{color: 'white', fontSize: 14, fontWeight: 'bold'}}>
             Complete your profile
           </Text>

@@ -7,19 +7,16 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
 import {color} from '../Constants/Colors';
 import HeaderTitle from '../components/HeaderTitle';
 import {Dropdown} from 'react-native-element-dropdown';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 import {ActivityIndicator} from 'react-native-paper';
 import MovieLiseView from '../components/MovieLiseView';
 import CategoryItem from '../components/CategoryItem';
@@ -33,28 +30,17 @@ import CusineView from '../components/CusineView';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import CakeDetailHeaderSection from '../components/cakeDetailsScreenCells/CakeDetailHeaderSection';
+import {useSelector} from 'react-redux';
 
 const HomeScreen = ({route}) => {
   const [page, setPage] = useState(1);
   const [search, setSearchText] = useState('');
   const [value, setValue] = useState('');
   const navigation = useNavigation();
-
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [areaName, setAreaName] = useState();
-
   const [selectIndex, setSelectIndex] = useState(0);
-
-  const userID = useSelector(store => store.userID);
-  const userInfo = useSelector(store => store.userInfo);
-  const profileInfo = useSelector(store => store.profileInfo);
-  const [profileImage, setProfileImage] = useState(
-    '../assets/images/Jesta.png',
-  );
-
-  const photoURL = route.params;
-  console.log('route.params', route.params);
+  const userName = useSelector(state => state.userName);
 
   const cityDropDown = [
     {
@@ -76,24 +62,35 @@ const HomeScreen = ({route}) => {
   ];
 
   const clearDate = async () => {
+    console.log('Logout ID');
     try {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
+      // Ensure that Google Sign-In is configured before calling revokeAccess and signOut
 
-      AsyncStorage.removeItem('customerID');
-      navigation.replace('Login', {someValue: '1001'});
+      // await GoogleSignin.hasPlayServices();
+      // await GoogleSignin.revokeAccess();
+      // await GoogleSignin.signOut();
+
+      // Clear other data
+      await AsyncStorage.removeItem('customerID');
+
+      navigation.navigate('Login');
     } catch (error) {
       console.error('Logout error:', error);
     }
   };
 
   const symAction = index => {
-    console.log('index', index);
     setSelectIndex(index);
+  };
+
+  const initialLoad = async () => {
+    console.log('UserNameeeeeeeeee:', userName);
+    const value = await AsyncStorage.getItem('UserName');
   };
 
   useEffect(() => {
     getHomePage();
+    initialLoad();
     // getMovies();
   }, []);
 
@@ -112,7 +109,6 @@ const HomeScreen = ({route}) => {
         .then(response => response.json())
         .then(res => {
           setData(res?.parameters?.cusine);
-          console.log('res>>', JSON.stringify(res?.parameters?.cusine));
         });
     } catch (error) {
     } finally {

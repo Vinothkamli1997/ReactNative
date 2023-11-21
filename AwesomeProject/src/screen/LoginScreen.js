@@ -11,7 +11,7 @@ import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {PROFILEINFO, USERID, USERINFO} from '../redux/Action';
+import {PROFILEINFO, USEREMAIL, USERID, USERINFO} from '../redux/Action';
 
 import {
   GoogleSignin,
@@ -23,10 +23,7 @@ const LoginScreen = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPwd] = useState('');
-  const [num, setNum] = useState('101');
-  const route = useRoute();
-  const [loggedIn, setloggedIn] = useState(false);
-  const [userInfo, setuserInfo] = useState([]);
+  // const [num, setNum] = useState('101');
   const [image, setImage] = useState('');
   console.log('1223455', image);
 
@@ -48,7 +45,6 @@ const LoginScreen = () => {
       forceCodeForRefreshToken: true,
     });
 
-    // Set 'true' in AsyncStorage for the key 'customerID'
     AsyncStorage.setItem('customerID', 'true');
   }, []);
 
@@ -63,12 +59,6 @@ const LoginScreen = () => {
 
         const {email, givenName, familyName, id, photo} = userInfo.user;
 
-        console.log('Email: ', email);
-        console.log('First Name: ', givenName);
-        console.log('Last Name: ', familyName);
-        console.log('User ID: ', id);
-        console.log('Photo URL: ', photo);
-
         setImage(photo);
 
         await AsyncStorage.setItem('ProfileImage', photo);
@@ -76,31 +66,25 @@ const LoginScreen = () => {
         await AsyncStorage.setItem('ProfileLastName', familyName);
         await AsyncStorage.setItem('ProfileEmail', email);
 
-        storeData();
+        AsyncStorage.setItem('customerID', 'true');
 
         setloggedIn(true);
         setuserInfo(userInfo);
 
         navigation.navigate('Home', {photoURL: photo});
-        console.log(photo);
       }
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.error('Sign-in was canceled.');
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.error('Sign-in is already in progress.');
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.error('Google Play Services are not available or outdated.');
       } else {
-        console.error('An error occurred during sign-in.', error.code);
-        Alert.alert('An error occurred during sign-in.');
       }
     }
   };
 
   const navigation = useNavigation();
 
-  const isEmailValid = () => {
+  const isEmailValid = async () => {
     if (!email) {
       Alert.alert('Login Failed', 'Enter Emial', [
         {
@@ -138,21 +122,17 @@ const LoginScreen = () => {
         },
       ]);
     } else {
-      storeData('true');
+      await AsyncStorage.setItem('customerID', 'true');
 
-      dispatch({type: USERID, payload: '10000'});
+      console.log('emaillllllll', email);
 
-      dispatch({type: USERINFO, payload: {name: 'xdfsd', num: '453453'}});
-
-      dispatch({
-        type: PROFILEINFO,
-        payload: {name: 'Vinoth', address: 'Coimbatore', pincode: '628552'},
-      });
+      dispatch({type: USEREMAIL, payload: {userName: email}});
+      await AsyncStorage.setItem('UserName', email);
 
       setEmail('');
       setPwd('');
 
-      navigation.replace('Home', num);
+      navigation.replace('Home');
     }
   };
 

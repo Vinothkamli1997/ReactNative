@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  useWindowDimensions,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {StyleSheet, View, useWindowDimensions, Text} from 'react-native';
 import React, {useState} from 'react';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import TabViewDoctorDetailsScree from './TabViewDoctorDetailsScree';
@@ -34,7 +28,7 @@ const renderTabBar = props => (
       justifyContent: 'center',
     }}
     renderLabel={({route, focused}) => (
-      <Text style={{color: focused ? 'white' : 'black'}}>{route.title}</Text>
+      <Text style={{color: focused ? 'white' : 'gray'}}>{route.title}</Text>
     )}
   />
 );
