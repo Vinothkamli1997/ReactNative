@@ -124,8 +124,6 @@ const LoginScreen = () => {
     } else {
       await AsyncStorage.setItem('customerID', 'true');
 
-      console.log('emaillllllll', email);
-
       dispatch({type: USEREMAIL, payload: {userName: email}});
       await AsyncStorage.setItem('UserName', email);
 

@@ -31,6 +31,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import CakeDetailHeaderSection from '../components/cakeDetailsScreenCells/CakeDetailHeaderSection';
 import {useSelector} from 'react-redux';
+import {CUSINELIST} from '../redux/Action';
 
 const HomeScreen = ({route}) => {
   const [page, setPage] = useState(1);
@@ -109,8 +110,14 @@ const HomeScreen = ({route}) => {
         .then(response => response.json())
         .then(res => {
           setData(res?.parameters?.cusine);
+
+          dispatch({
+            type: CUSINELIST,
+            payload: {cusineList: res?.parameters?.cusine},
+          });
         });
     } catch (error) {
+      console.log('Api error', error);
     } finally {
       setLoading(false);
     }

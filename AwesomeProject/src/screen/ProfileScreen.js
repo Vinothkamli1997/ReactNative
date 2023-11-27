@@ -20,7 +20,8 @@ const ProfileScreen = () => {
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const userName = useSelector(state => state.userName);
+  const userName = useSelector(state => state.userEmail.userName);
+  const cusine = useSelector(state => state.cusineList.cusine);
 
   const navigation = useNavigation();
 
@@ -28,7 +29,6 @@ const ProfileScreen = () => {
     await AsyncStorage.getItem('ProfileImage')
       .then(uri => {
         setImg(uri);
-        console.log('Image URI:', uri);
       })
       .catch(error => {
         console.error('Error reading image URI from AsyncStorage:', error);
@@ -37,7 +37,6 @@ const ProfileScreen = () => {
     AsyncStorage.getItem('ProfileName')
       .then(givenName => {
         setName(givenName);
-        console.log('Given Name:', givenName);
       })
       .catch(error => {
         console.error('Error reading Given Name from AsyncStorage:', error);
@@ -46,7 +45,6 @@ const ProfileScreen = () => {
     AsyncStorage.getItem('ProfileLastName')
       .then(lastName => {
         setLastName(lastName);
-        console.log('Last Name:', lastName);
       })
       .catch(error => {
         console.error('Error reading Given Name from AsyncStorage:', error);
@@ -55,7 +53,6 @@ const ProfileScreen = () => {
     AsyncStorage.getItem('ProfileEmail')
       .then(email => {
         setEmail(email);
-        console.log('Email:', email);
       })
       .catch(error => {
         console.error('Error reading Given Name from AsyncStorage:', error);
@@ -63,9 +60,9 @@ const ProfileScreen = () => {
   };
 
   const initialLoad = async () => {
-    // Log the value of userName
-    console.log('Profile Screen UserName:', userName);
     setName(userName);
+    console.log('Updated Name', userName);
+    console.log('use redux and store cusine aray', cusine);
   };
 
   useEffect(() => {

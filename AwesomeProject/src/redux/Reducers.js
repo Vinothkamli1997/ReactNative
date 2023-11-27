@@ -1,4 +1,10 @@
-const {USERID, USERINFO, PROFILEINFO, USEREMAIL} = require('./Action');
+const {
+  USERID,
+  USERINFO,
+  PROFILEINFO,
+  USEREMAIL,
+  CUSINELIST,
+} = require('./Action');
 
 const initialState = {
   userID: '',
@@ -15,6 +21,9 @@ const initialState = {
   },
   userEmail: {
     userName: '',
+  },
+  cusineList: {
+    cusine: [],
   },
 };
 
@@ -40,6 +49,12 @@ const userReducer = (state = initialState, action) => {
         ...state,
         userEmail: action.payload,
       };
+    case CUSINELIST:
+      return {
+        ...state,
+        cusineList: action.payload,
+      };
+
     default:
       return state;
   }

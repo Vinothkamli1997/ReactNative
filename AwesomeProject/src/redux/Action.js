@@ -2,6 +2,7 @@ export const USERID = 'USERID';
 export const USERINFO = 'USERINFO';
 export const PROFILEINFO = 'PROFILEINFO';
 export const USEREMAIL = 'USEREMAIL';
+export const CUSINELIST = 'CUSINELIST';
 
 export const userAction = payload => {
   return {
@@ -27,6 +28,13 @@ export const profileDetails = payload => {
 export const userEmail = payload => {
   return {
     type: USEREMAIL,
+    payload: payload,
+  };
+};
+
+export const cusineList = payload => {
+  return {
+    type: CUSINELIST,
     payload: payload,
   };
 };
