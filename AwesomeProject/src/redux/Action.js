@@ -26,7 +26,7 @@ export const profileDetails = payload => {
 
 export const userEmail = payload => {
   return {
-    type: PROFILEINFO,
+    type: USEREMAIL,
     payload: payload,
   };
 };

@@ -35,6 +35,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         profileInfo: action.payload,
       };
+    case USEREMAIL:
+      return {
+        ...state,
+        userEmail: action.payload,
+      };
     default:
       return state;
   }

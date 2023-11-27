@@ -40,7 +40,7 @@ const HomeScreen = ({route}) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [selectIndex, setSelectIndex] = useState(0);
-  const userName = useSelector(state => state.userName);
+  const userEmail = useSelector(state => state.userEmail.userName);
 
   const cityDropDown = [
     {
@@ -84,7 +84,7 @@ const HomeScreen = ({route}) => {
   };
 
   const initialLoad = async () => {
-    console.log('UserNameeeeeeeeee:', userName);
+    console.log('UserNameeeeeeeeee:', userEmail);
     const value = await AsyncStorage.getItem('UserName');
   };
 
@@ -167,7 +167,7 @@ const HomeScreen = ({route}) => {
                 buttonTextStyle={styles.dropdownButtonStyle}
                 rowStyle={styles.dropRowStyle}
               /> */}
-                <AntDesign name="down" size={20} color="#2D2E8B" />
+                {/* <AntDesign name="down" size={20} color="#2D2E8B" />/ */}
               </View>
             </View>
 
