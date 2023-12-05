@@ -65,6 +65,22 @@ const ProfileScreen = () => {
     console.log('use redux and store cusine aray', cusine);
   };
 
+  const clearDate = async () => {
+    console.log('Logout ID');
+    setModalVisible(true);
+  };
+
+  const logout = async () => {
+    try {
+      setModalVisible(false);
+
+      await AsyncStorage.removeItem('customerID');
+      navigation.replace('Login');
+    } catch (error) {
+      console.log('Logout Error', error);
+    }
+  };
+
   useEffect(() => {
     // Retrieve the image URI from AsyncStorage
     getImageProfile();
@@ -328,43 +344,66 @@ const ProfileScreen = () => {
               name={'Logout'}
               iconName={'logout'}
               iconColor={'#FF3359'}
+              clickAction={() => clearDate()}
             />
           </View>
 
           <Modal
             animationType="slide"
-            transparen={true}
             visible={modalVisible}
+            transparent={true}
             onRequestClose={() => {
               setModalVisible(false);
             }}>
             <View
-              style={{
-                justifyContent: 'flex-end',
-                alignItems: 'center',
-                alignSelf: 'center',
-                height: '100%',
-                width: '100%',
-                bottom: 20,
-              }}>
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <View
                 style={{
-                  backgroundColor: 'green',
+                  backgroundColor: 'white',
                   padding: 20,
                   borderRadius: 10,
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   flexDirection: 'column',
-                  width: 200,
-                }}>
-                <TouchableOpacity>
-                  <Text>Are Your Want sure logout</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Text>okay</Text>
-                </TouchableOpacity>
 
-                <Text onPress={() => setModalVisible(false)}>Cancel</Text>
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 9,
+                  },
+                  shadowOpacity: 0.48,
+                  shadowRadius: 11.95,
+
+                  elevation: 18,
+                }}>
+                <View style={{gap: 12}}>
+                  <Text>Are you sure you want to logout?</Text>
+
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-around',
+                    }}>
+                    <TouchableOpacity
+                      style={{
+                        backgroundColor: 'red',
+                        padding: 10,
+                        borderRadius: 10,
+                      }}
+                      onPress={() => logout()}>
+                      <Text>Okay</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{
+                        backgroundColor: 'lightgray',
+                        padding: 10,
+                        borderRadius: 10,
+                      }}
+                      onPress={() => setModalVisible(false)}>
+                      <Text>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               </View>
             </View>
           </Modal>

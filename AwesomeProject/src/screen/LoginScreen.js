@@ -25,7 +25,6 @@ const LoginScreen = () => {
   const [password, setPwd] = useState('');
   // const [num, setNum] = useState('101');
   const [image, setImage] = useState('');
-  console.log('1223455', image);
 
   const dispatch = useDispatch();
 
@@ -69,7 +68,6 @@ const LoginScreen = () => {
         AsyncStorage.setItem('customerID', 'true');
 
         setloggedIn(true);
-        setuserInfo(userInfo);
 
         navigation.navigate('Home', {photoURL: photo});
       }

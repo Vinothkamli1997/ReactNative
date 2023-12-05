@@ -2,12 +2,9 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useDispatch} from 'react-redux';
-import {USEREMAIL} from '../redux/Action';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,8 +16,6 @@ const SplashScreen = () => {
   const checkAsyncStorage = async () => {
     try {
       const value = await AsyncStorage.getItem('someKey');
-
-      console.log('Async Value', value);
 
       if (value === 'true') {
         navigation.replace('Home');

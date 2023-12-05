@@ -38,7 +38,6 @@ const HomeScreen = ({route}) => {
   const [search, setSearchText] = useState('');
   const [value, setValue] = useState('');
   const navigation = useNavigation();
-  const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [selectIndex, setSelectIndex] = useState(0);
   const userEmail = useSelector(state => state.userEmail.userName);
@@ -61,24 +60,6 @@ const HomeScreen = ({route}) => {
       value: '4',
     },
   ];
-
-  const clearDate = async () => {
-    console.log('Logout ID');
-    try {
-      // Ensure that Google Sign-In is configured before calling revokeAccess and signOut
-
-      // await GoogleSignin.hasPlayServices();
-      // await GoogleSignin.revokeAccess();
-      // await GoogleSignin.signOut();
-
-      // Clear other data
-      await AsyncStorage.removeItem('customerID');
-
-      navigation.navigate('Login');
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
-  };
 
   const symAction = index => {
     setSelectIndex(index);
@@ -165,16 +146,6 @@ const HomeScreen = ({route}) => {
                   }}
                   placeholder="Select"
                 />
-                {/* <SelectDropdown
-                data={cityDropDown}
-                onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
-                }}
-                buttonStyle={styles.dropDownStyle}
-                buttonTextStyle={styles.dropdownButtonStyle}
-                rowStyle={styles.dropRowStyle}
-              /> */}
-                {/* <AntDesign name="down" size={20} color="#2D2E8B" />/ */}
               </View>
             </View>
 
@@ -182,11 +153,7 @@ const HomeScreen = ({route}) => {
               <TouchableOpacity style={styles.notificationView}>
                 <AntDesign name="google" size={25} color="#2D2E8B" />
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.favView}
-                onPress={() => {
-                  clearDate();
-                }}>
+              <TouchableOpacity style={styles.favView}>
                 <MaterialIcons name="logout" size={25} color="#2D2E8B" />
               </TouchableOpacity>
             </View>
@@ -244,7 +211,10 @@ const HomeScreen = ({route}) => {
                   bgColor={item.color}
                   index={index}
                   symtopAction={e => symAction(e)}
-                  bgcolor={selectIndex === index ? 'red' : 'white'}
+                  bgcolor={selectIndex === index ? color.primaryColor : 'white'}
+                  textColor={
+                    selectIndex === index ? 'white' : color.primaryColor
+                  }
                 />
               )}
               horizontal={true}
@@ -271,50 +241,6 @@ const HomeScreen = ({route}) => {
               style={styles.symList}
             />
           </View>
-
-          <View>
-            {isLoading ? (
-              <ActivityIndicator />
-            ) : (
-              <View>
-                <FlatList
-                  data={data}
-                  onEndReached={onEndedLastData}
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                  renderItem={({item, index}) => (
-                    <MovieLiseView
-                      title={item.cuisine_name}
-                      item={item}
-                      index={index}
-                    />
-                  )}
-                />
-              </View>
-            )}
-          </View>
-
-          <View>
-            <FlatList
-              data={data}
-              onEndReached={onEndedLastData}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({item, index}) => (
-                <>
-                  {index !== 0 && (
-                    <CusineView
-                      name={item.cuisine_name}
-                      cusineImage={item?.cuisine_image}
-                      item={item}
-                    />
-                  )}
-                </>
-              )}
-            />
-          </View>
-
-          <CakeDetailHeaderSection />
         </View>
       </ScrollView>
     </SafeAreaView>

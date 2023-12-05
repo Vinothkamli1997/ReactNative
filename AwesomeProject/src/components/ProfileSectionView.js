@@ -4,9 +4,9 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Divider} from 'react-native-paper';
 import React from 'react';
 
-const ProfileSectionView = ({name, iconName, iconColor}) => {
+const ProfileSectionView = ({name, iconName, iconColor, clickAction}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={clickAction}>
       <View
         style={{
           flexDirection: 'row',
