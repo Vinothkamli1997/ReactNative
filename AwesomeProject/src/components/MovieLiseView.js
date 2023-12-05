@@ -1,6 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import HeaderTitle from './HeaderTitle';
 
 const MovieLiseView = ({title, item, index}) => {
   {

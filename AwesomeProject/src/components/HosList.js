@@ -4,8 +4,6 @@ import {color} from '../Constants/Colors';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
 export default function HosList({title, area}) {
-  console.log('Hospital');
-
   return (
     <TouchableOpacity style={styles.specalistView}>
       <Image

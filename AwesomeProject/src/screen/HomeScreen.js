@@ -244,10 +244,7 @@ const HomeScreen = ({route}) => {
                   bgColor={item.color}
                   index={index}
                   symtopAction={e => symAction(e)}
-                  bgcolor={selectIndex === index ? color.primaryColor : 'white'}
-                  textColor={
-                    selectIndex === index ? 'white' : color.primaryColor
-                  }
+                  bgcolor={selectIndex === index ? 'red' : 'white'}
                 />
               )}
               horizontal={true}
