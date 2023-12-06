@@ -4,6 +4,7 @@ const {
   PROFILEINFO,
   USEREMAIL,
   CUSINELIST,
+  GOOGLEUSERINFO,
 } = require('./Action');
 
 const initialState = {
@@ -19,11 +20,19 @@ const initialState = {
     address: '',
     pincode: '',
   },
+
   userEmail: {
     userName: '',
   },
   cusineList: {
     cusine: [],
+  },
+
+  googleUserInfo: {
+    image: '',
+    name: '',
+    email: '',
+    lastname: '',
   },
 };
 
@@ -53,6 +62,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         cusineList: action.payload,
+      };
+    case GOOGLEUSERINFO:
+      return {
+        ...state,
+        googleUserInfo: action.payload,
       };
 
     default:

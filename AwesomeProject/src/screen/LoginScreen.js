@@ -11,7 +11,13 @@ import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {PROFILEINFO, USEREMAIL, USERID, USERINFO} from '../redux/Action';
+import {
+  GOOGLEUSERINFO,
+  PROFILEINFO,
+  USEREMAIL,
+  USERID,
+  USERINFO,
+} from '../redux/Action';
 
 import {
   GoogleSignin,
@@ -43,8 +49,6 @@ const LoginScreen = () => {
         '152977427144-0rims7le1vksljg0it96okn0m4iq5btk.apps.googleusercontent.com',
       forceCodeForRefreshToken: true,
     });
-
-    AsyncStorage.setItem('customerID', 'true');
   }, []);
 
   const handleGoogleSignIn = async () => {
@@ -55,28 +59,44 @@ const LoginScreen = () => {
         return;
       } else {
         const userInfo = await GoogleSignin.signIn();
+        const {email, givenName, familyName, photo} = userInfo.user;
 
-        const {email, givenName, familyName, id, photo} = userInfo.user;
+        console.error('Google given name.', givenName);
 
-        setImage(photo);
+        if (photo !== null && photo !== undefined) {
+          setImage(photo);
+          await AsyncStorage.setItem('ProfileImage', photo);
+        } else {
+        }
+
+        if (photo) {
+          await AsyncStorage.setItem('ProfileImage', photo);
+        }
 
         await AsyncStorage.setItem('ProfileImage', photo);
         await AsyncStorage.setItem('ProfileName', givenName);
         await AsyncStorage.setItem('ProfileLastName', familyName);
         await AsyncStorage.setItem('ProfileEmail', email);
 
-        AsyncStorage.setItem('customerID', 'true');
+        let payload = {
+          name: givenName,
+          image: photo,
+          email: email,
+          lastname: familyName,
+        };
 
-        setloggedIn(true);
+        dispatch({type: GOOGLEUSERINFO, payload: payload});
 
+        // Remove the following line as you don't need to set 'customerID' here.
+        // AsyncStorage.setItem('customerID', 'true');
+
+        console.log('Before navigation');
         navigation.navigate('Home', {photoURL: photo});
+        console.log('After navigation');
       }
     } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-      } else {
-      }
+      // Handle errors
+      console.error('Google Sign-In Error:', error);
     }
   };
 
@@ -122,8 +142,17 @@ const LoginScreen = () => {
     } else {
       await AsyncStorage.setItem('customerID', 'true');
 
-      dispatch({type: USEREMAIL, payload: {userName: email}});
+      // dispatch({type: GOOGLEUSERINFO, payload: {email: email}});
       await AsyncStorage.setItem('UserName', email);
+
+      let payload = {
+        name: '',
+        image: '',
+        email: email,
+        lastname: '',
+      };
+
+      dispatch({type: GOOGLEUSERINFO, payload: payload});
 
       setEmail('');
       setPwd('');
@@ -134,12 +163,12 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.bgScreen}>
-      <TouchableOpacity style={styles.back}>
+      {/* <TouchableOpacity style={styles.back}>
         <Image
           style={styles.backArrowImage}
           source={require('../assets/images/back.png')}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.imageBgView}>
         <Image
           style={styles.centerImage}

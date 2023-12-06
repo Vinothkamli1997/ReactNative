@@ -3,6 +3,7 @@ export const USERINFO = 'USERINFO';
 export const PROFILEINFO = 'PROFILEINFO';
 export const USEREMAIL = 'USEREMAIL';
 export const CUSINELIST = 'CUSINELIST';
+export const GOOGLEUSERINFO = 'GOOGLEUSERINFO';
 
 export const userAction = payload => {
   return {
@@ -35,6 +36,13 @@ export const userEmail = payload => {
 export const cusineList = payload => {
   return {
     type: CUSINELIST,
+    payload: payload,
+  };
+};
+
+export const googleUserInfo = payload => {
+  return {
+    type: GOOGLEUSERINFO,
     payload: payload,
   };
 };

@@ -13,6 +13,7 @@ import {color} from '../Constants/Colors';
 import ProfileSectionView from '../components/ProfileSectionView';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 const ProfileScreen = () => {
   const [img, setImg] = useState(null);
@@ -20,49 +21,59 @@ const ProfileScreen = () => {
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const userName = useSelector(state => state.userEmail.userName);
-  const cusine = useSelector(state => state.cusineList.cusine);
+  const googleInfo = useSelector(state => state.googleUserInfo);
 
   const navigation = useNavigation();
 
-  const getImageProfile = async () => {
-    await AsyncStorage.getItem('ProfileImage')
-      .then(uri => {
-        setImg(uri);
-      })
-      .catch(error => {
-        console.error('Error reading image URI from AsyncStorage:', error);
-      });
+  // const getImageProfile = async () => {
+  //   await AsyncStorage.getItem('ProfileImage')
+  //     .then(uri => {
+  //       setImg(uri);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error reading image URI from AsyncStorage:', error);
+  //     });
 
-    AsyncStorage.getItem('ProfileName')
-      .then(givenName => {
-        setName(givenName);
-      })
-      .catch(error => {
-        console.error('Error reading Given Name from AsyncStorage:', error);
-      });
+  //   AsyncStorage.getItem('ProfileName')
+  //     .then(givenName => {
+  //       setName(givenName);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error reading Given Name from AsyncStorage:', error);
+  //     });
 
-    AsyncStorage.getItem('ProfileLastName')
-      .then(lastName => {
-        setLastName(lastName);
-      })
-      .catch(error => {
-        console.error('Error reading Given Name from AsyncStorage:', error);
-      });
+  //   AsyncStorage.getItem('ProfileLastName')
+  //     .then(lastName => {
+  //       setLastName(lastName);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error reading Given Name from AsyncStorage:', error);
+  //     });
 
-    AsyncStorage.getItem('ProfileEmail')
-      .then(email => {
-        setEmail(email);
-      })
-      .catch(error => {
-        console.error('Error reading Given Name from AsyncStorage:', error);
-      });
+  //   AsyncStorage.getItem('ProfileEmail')
+  //     .then(email => {
+  //       setEmail(email);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error reading Given Name from AsyncStorage:', error);
+  //     });
+  // };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  const getUserInfo = () => {
+    setName(googleInfo.name);
+    setImg(googleInfo.image);
+    setEmail(googleInfo.email);
+    setLastName(googleInfo.lastname);
   };
 
+  console.log('googleInfo', googleInfo);
+
   const initialLoad = async () => {
-    setName(userName);
-    console.log('Updated Name', userName);
-    console.log('use redux and store cusine aray', cusine);
+    setName(googleInfo.email);
   };
 
   const clearDate = async () => {
@@ -74,18 +85,18 @@ const ProfileScreen = () => {
     try {
       setModalVisible(false);
 
+      await GoogleSignin.signOut();
       await AsyncStorage.removeItem('customerID');
       navigation.replace('Login');
     } catch (error) {
-      console.log('Logout Error', error);
+      console.error('Logout Error', error);
     }
   };
 
-  useEffect(() => {
-    // Retrieve the image URI from AsyncStorage
-    getImageProfile();
-    initialLoad();
-  }, []);
+  // useEffect(() => {
+  //   getImageProfile();
+  //   initialLoad();
+  // }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -386,7 +397,7 @@ const ProfileScreen = () => {
                     }}>
                     <TouchableOpacity
                       style={{
-                        backgroundColor: 'red',
+                        backgroundColor: 'gray',
                         padding: 10,
                         borderRadius: 10,
                       }}
@@ -395,12 +406,12 @@ const ProfileScreen = () => {
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={{
-                        backgroundColor: 'lightgray',
+                        backgroundColor: color.primaryColor,
                         padding: 10,
                         borderRadius: 10,
                       }}
                       onPress={() => setModalVisible(false)}>
-                      <Text>Cancel</Text>
+                      <Text style={{color: 'white'}}>Cancel</Text>
                     </TouchableOpacity>
                   </View>
                 </View>

@@ -5,10 +5,9 @@ const DoctorDetailsScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerView}>
-        <View style={styles.textView}>
-          <TouchableOpacity></TouchableOpacity>
-        </View>
+        <Text>Learn JustifyCenter</Text>
       </View>
+      <Text>Learn JustifyCenter</Text>
     </View>
   );
 };
@@ -23,5 +22,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 220,
     backgroundColor: 'yellow',
+    alignItems: 'center',
+    flexDirection: 'column',
+    position: 'relative',
   },
 });
