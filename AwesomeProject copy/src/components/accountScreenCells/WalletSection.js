@@ -33,7 +33,9 @@ const WalletSection = ({name, image, path}) => {
         navigation.navigate(path);
       }}>
       <AntDesign name={image} size={20} color={color.primaryColor} />
-      <Text style={{fontSize: 10, fontWeight: 'bold'}}>{name}</Text>
+      <Text style={{fontSize: 10, fontWeight: 'bold', color: 'black'}}>
+        {name}
+      </Text>
     </TouchableOpacity>
   );
 };

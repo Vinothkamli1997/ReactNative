@@ -49,7 +49,7 @@ const AccountSectionList = ({name, image, index, path}) => {
           justifyContent: 'space-between',
           flexGrow: 1,
         }}>
-        <Text>{name}</Text>
+        <Text style={{color: 'black'}}>{name}</Text>
         <View
           style={{
             flexDirection: 'row',

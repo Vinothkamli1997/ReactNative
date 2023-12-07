@@ -6,8 +6,6 @@ import WelcomeScreen from '../screen/YumboxScreens/WelcomeScreen';
 import MenuScreen from '../screen/YumboxScreens/MenuScreen';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AccountScreen from '../screen/YumboxScreens/AccountScreen';
-import OrderHistoryScreen from '../screen/YumboxScreens/OrderHistoryScreen';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 const Tab = createBottomTabNavigator();
