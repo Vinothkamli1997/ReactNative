@@ -84,7 +84,7 @@ const MenuDishListSection = ({
           }}>
           <View>
             <Image
-              source={{uri: dishImage}}
+              source={{uri: typeof dishImage === 'string' ? dishImage : ''}}
               style={{
                 width: 110,
                 height: 110,

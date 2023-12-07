@@ -8,6 +8,8 @@ import OnBoardingScreen from '../screen/YumboxScreens/OnBoardingScreen';
 import OtpScreen from '../screen/YumboxScreens/OtpScreen';
 import BottomTabBar from './BottomTabBar';
 import FlavourScreen from '../screen/YumboxScreens/FlavourScreen';
+import OrderHistoryScreen from '../screen/YumboxScreens/OrderHistoryScreen';
+import AccountScreen from '../screen/YumboxScreens/AccountScreen';
 
 const AuthStack = () => {
   const Stack = createStackNavigator();
@@ -23,6 +25,8 @@ const AuthStack = () => {
       <Stack.Screen name="OTPScreen" component={OtpScreen} />
       <Stack.Screen name="Home" component={BottomTabBar} />
       <Stack.Screen name="FlavourScreen" component={FlavourScreen} />
+      <Stack.Screen name="OrderHistoryScreen" component={OrderHistoryScreen} />
+      <Stack.Screen name="AccountScreen" component={AccountScreen} />
     </Stack.Navigator>
   );
 };

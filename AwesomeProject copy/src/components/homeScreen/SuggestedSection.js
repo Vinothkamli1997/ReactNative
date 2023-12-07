@@ -66,7 +66,7 @@ const SuggestedSection = ({
           height: '100%',
         }}>
         <Image
-          source={{uri: image}}
+          source={{uri: typeof image === 'string' ? image : ''}}
           style={{
             width: 130,
             height: 130,
