@@ -43,7 +43,7 @@ const AccountScreen = () => {
     {
       name: 'Add Event',
       image: 'user',
-      path: '',
+      path: 'AddEventScreen',
     },
     {
       name: 'Order History',
@@ -63,17 +63,17 @@ const AccountScreen = () => {
     {
       name: 'Card Management',
       image: 'user',
-      path: '',
+      path: 'CardManagementScreen',
     },
     {
       name: 'About Us',
       image: 'bells',
-      path: '',
+      path: 'AboutUsScreen',
     },
     {
       name: 'Help Center',
       image: 'bells',
-      path: '',
+      path: 'HelpCenterScreen',
     },
   ];
 

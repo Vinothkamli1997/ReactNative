@@ -9,10 +9,10 @@ const AccountHeaderSection = () => {
         style={{width: 120, height: 120, borderRadius: 60}}
       />
       <View style={{justifyContent: 'center', paddingHorizontal: 10, gap: 10}}>
-        <Text>Vinoth kamli</Text>
+        <Text style={styles.textColor}>Vinoth kamli</Text>
 
-        <Text>Vinothkamlk573@gmail.com</Text>
-        <Text>7449269449</Text>
+        <Text style={styles.textColor}>Vinothkamlk573@gmail.com</Text>
+        <Text style={styles.textColor}>7449269449</Text>
       </View>
     </View>
   );
@@ -20,4 +20,10 @@ const AccountHeaderSection = () => {
 
 export default AccountHeaderSection;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  textColor: {
+    color: 'black',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+});

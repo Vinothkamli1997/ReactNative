@@ -66,7 +66,7 @@ const AccountSectionList = ({name, image, index, path}) => {
                 borderRadius: 10,
                 gap: 8,
               }}>
-              <Text>5</Text>
+              <Text style={{color: 'black'}}>5</Text>
               <AntDesign name={'star'} size={18} color={'red'} />
             </View>
           ) : (

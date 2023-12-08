@@ -7,10 +7,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {color} from '../../Constants/Colors';
+import axios from 'axios';
+import {referral} from '../../api/EndPoints';
+import {Loader} from '../../components/loader/Loader';
 
 const ReferAndEarnHeader = () => {
+  const [loading, setloading] = useState(false);
+  const [referralID, setreferralID] = useState('');
+
   const shareContent = {
     message:
       'Check out this awesome app: https://play.google.com/store/apps/details?id=com.tt.yumbox.elitecake',
@@ -33,6 +39,31 @@ const ReferAndEarnHeader = () => {
     //   console.error('Error sharing:', error.message);
     // }
   };
+
+  useEffect(() => {
+    referralApi();
+  }, []);
+
+  const referralApi = async () => {
+    setloading(true);
+    try {
+      const response = await axios.post(referral, {
+        auth_token: 'ecda1e2f6dfd2420efc293ecb9405f62',
+        merchant_id: '1',
+        customer_id: '27',
+      });
+
+      const res = response.data;
+      console.log('REferralApi', res);
+
+      setreferralID(res.parameters.referal_code);
+    } catch (error) {
+      console.log('Api error', error);
+    } finally {
+      setloading(false);
+    }
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View
@@ -58,7 +89,7 @@ const ReferAndEarnHeader = () => {
             Your Referral ID:
           </Text>
           <Text style={{fontSize: 18, color: 'black', fontWeight: 'bold'}}>
-            EC66810
+            {referralID}
           </Text>
         </View>
 
@@ -91,10 +122,10 @@ const ReferAndEarnHeader = () => {
               style={{
                 padding: 10,
                 marginHorizontal: 10,
-                backgroundColor: 'gray',
+                backgroundColor: 'lightgray',
                 borderRadius: 10,
               }}>
-              EC66810
+              {referralID}
             </Text>
             <TouchableOpacity onPress={onShare}>
               <Text
@@ -111,6 +142,7 @@ const ReferAndEarnHeader = () => {
           </View>
         </View>
       </View>
+      {loading && <Loader loading={loading} />}
     </ScrollView>
   );
 };

@@ -39,6 +39,13 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 8,
   },
-  title: {flex: 1, textAlign: 'center', color: 'black', fontSize: 18},
+  title: {
+    flex: 1,
+    textAlign: 'center',
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+  },
   codeFieldRoot: {marginTop: 20, width: '80%', alignSelf: 'center'},
 });

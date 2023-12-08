@@ -11,6 +11,10 @@ import FlavourScreen from '../screen/YumboxScreens/FlavourScreen';
 import OrderHistoryScreen from '../screen/YumboxScreens/OrderHistoryScreen';
 import AccountScreen from '../screen/YumboxScreens/AccountScreen';
 import MyReferralScreen from '../screen/YumboxScreens/MyReferralScreen';
+import AddEventScreen from '../screen/YumboxScreens/AddEventScreen';
+import CardManagementScreen from '../screen/YumboxScreens/CardManagementScreen';
+import AboutUsScreen from '../screen/YumboxScreens/AboutUsScreen';
+import HelpCenterScreen from '../screen/YumboxScreens/HelpCenterScreen';
 
 const AuthStack = () => {
   const Stack = createStackNavigator();
@@ -29,6 +33,14 @@ const AuthStack = () => {
       <Stack.Screen name="OrderHistoryScreen" component={OrderHistoryScreen} />
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
       <Stack.Screen name="MyReferralScreen" component={MyReferralScreen} />
+      <Stack.Screen name="AddEventScreen" component={AddEventScreen} />
+      <Stack.Screen
+        name="CardManagementScreen"
+        component={CardManagementScreen}
+      />
+      <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
+      <Stack.Screen name="HelpCenterScreen" component={HelpCenterScreen} />
+
     </Stack.Navigator>
   );
 };
