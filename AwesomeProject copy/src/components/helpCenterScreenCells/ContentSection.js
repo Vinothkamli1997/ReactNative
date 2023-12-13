@@ -22,6 +22,7 @@ const ContentSection = () => {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 30,
+        marginTop: -30,
       }}>
       <Image
         source={require('../../assets/images/HelpCenter.jpeg')}
@@ -46,7 +47,7 @@ const ContentSection = () => {
               color: 'red',
             }}>
             {' '}
-            +91 9115378000
+            {phoneNumber}
           </Text>
         </TouchableOpacity>
         for any queries, issues, feedback and suggestions.

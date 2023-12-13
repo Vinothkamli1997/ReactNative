@@ -2,6 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/native';
 
 const SuggestedSection = ({
   title,
@@ -15,14 +16,18 @@ const SuggestedSection = ({
   disPercentage,
   pound,
   bestPrice,
+  dishID,
 }) => {
   let flexDirectionStyle;
+
+  const navigation = useNavigation();
 
   if (item % 2 === 1) {
     flexDirectionStyle = 'row-reverse';
   } else {
     flexDirectionStyle = 'row';
   }
+
   const renderStars = () => {
     const stars = [];
 
@@ -57,7 +62,10 @@ const SuggestedSection = ({
         shadowRadius: 4.65,
 
         elevation: 8,
-      }}>
+      }}
+      onPress={() =>
+        navigation.navigate('CakeDetailsScreen', {dishID: dishID})
+      }>
       <View
         style={{
           flexDirection: flexDirectionStyle,
@@ -72,7 +80,7 @@ const SuggestedSection = ({
             height: 130,
             marginLeft: -15,
             marginRight: -10,
-            borderRadius: 75,
+            borderRadius: 20,
           }}
         />
 
@@ -135,7 +143,10 @@ const SuggestedSection = ({
                 backgroundColor: 'red',
                 padding: 8,
                 borderRadius: 10,
-              }}>
+              }}
+              onPress={() =>
+                navigation.navigate('CakeAddOnScreen', {dishID: dishID})
+              }>
               <Text style={{fontSize: 12, color: 'white'}}>Order Now</Text>
             </TouchableOpacity>
           </View>

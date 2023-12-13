@@ -42,7 +42,6 @@ const MenuDishListSection = ({
       setCakeTypeImage(require('../../assets/images/speciallybaked.png'));
     }
 
-    console.log('Veg', dishType);
     if (dishType === 'veg') {
       setvegImage(require('../../assets/images/vegImage.png'));
     } else {

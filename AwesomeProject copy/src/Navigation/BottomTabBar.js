@@ -7,6 +7,7 @@ import MenuScreen from '../screen/YumboxScreens/MenuScreen';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AccountScreen from '../screen/YumboxScreens/AccountScreen';
 import Entypo from 'react-native-vector-icons/Entypo';
+import CartSCreen from '../screen/YumboxScreens/CartSCreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -62,6 +63,22 @@ const BottomTabBar = () => {
             return (
               <Entypo
                 name="wallet"
+                size={18}
+                color={focused ? 'red' : 'gray'}
+              />
+            );
+          },
+        })}
+      />
+
+      <Tab.Screen
+        name="Cart"
+        component={CartSCreen}
+        options={({route}) => ({
+          tabBarIcon: ({size, focused}) => {
+            return (
+              <FontAwesome
+                name="shopping-bag"
                 size={18}
                 color={focused ? 'red' : 'gray'}
               />

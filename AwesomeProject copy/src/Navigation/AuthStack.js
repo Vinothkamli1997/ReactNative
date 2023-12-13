@@ -15,6 +15,11 @@ import AddEventScreen from '../screen/YumboxScreens/AddEventScreen';
 import CardManagementScreen from '../screen/YumboxScreens/CardManagementScreen';
 import AboutUsScreen from '../screen/YumboxScreens/AboutUsScreen';
 import HelpCenterScreen from '../screen/YumboxScreens/HelpCenterScreen';
+import MyFavouriteScreen from '../screen/YumboxScreens/MyFavouriteScreen';
+import NewProfileScreen from '../screen/YumboxScreens/NewProfileScreen';
+import CakeDetailsScreen from '../screen/YumboxScreens/CakeDetailsScreen';
+import CakeAddOnScreen from '../screen/YumboxScreens/CakeAddOnScreen';
+import CartSCreen from '../screen/YumboxScreens/CartSCreen';
 
 const AuthStack = () => {
   const Stack = createStackNavigator();
@@ -40,7 +45,11 @@ const AuthStack = () => {
       />
       <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
       <Stack.Screen name="HelpCenterScreen" component={HelpCenterScreen} />
-
+      <Stack.Screen name="MyFavouriteScreen" component={MyFavouriteScreen} />
+      <Stack.Screen name="NewProfileScreen" component={NewProfileScreen} />
+      <Stack.Screen name="CakeDetailsScreen" component={CakeDetailsScreen} />
+      <Stack.Screen name="CakeAddOnScreen" component={CakeAddOnScreen} />
+      <Stack.Screen name="CartSCreen" component={CartSCreen} />
     </Stack.Navigator>
   );
 };

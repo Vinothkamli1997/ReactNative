@@ -7,7 +7,7 @@ const OtpScreen = ({route}) => {
   const phnnumber = route?.params;
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View>
         <TitleSection title={'OTP Screen'} />
         <OtpField mobileNumber={phnnumber} />

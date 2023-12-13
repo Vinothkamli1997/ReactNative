@@ -32,7 +32,7 @@ const CardHeaderSection = () => {
         </Text>
       </View>
 
-      <Text style={{textAlign: 'left'}}>
+      <Text style={{textAlign: 'left', color: 'black'}}>
         Your Order will be placed in Waiting Mode, till the time your payment is
         confirmed. you will the time your payment is confiremde. you will
         receive a call from us as your payment reach us. check your order status

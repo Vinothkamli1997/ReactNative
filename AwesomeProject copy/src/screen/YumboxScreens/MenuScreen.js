@@ -73,7 +73,6 @@ const MenuScreen = () => {
 
       const res = response.data;
       setdishCategoryList(res?.parameters?.category);
-      console.log('Category name', res?.parameters?.category);
     } catch (error) {
       console.log('Api error', error);
     } finally {

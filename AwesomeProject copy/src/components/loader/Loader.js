@@ -9,7 +9,7 @@ export const Loader = ({loading}) => {
     if (loading) {
       interval = setInterval(() => {
         setColorIndex(prevIndex => (prevIndex === 0 ? 1 : 0));
-      }, 1000); // Adjust the interval as needed
+      }, 1000);
     } else {
       clearInterval(interval);
     }

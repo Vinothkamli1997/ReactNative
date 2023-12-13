@@ -26,6 +26,8 @@ const HomePage = () => {
   const [popular, setPopular] = useState([]);
   const [voucher, setvoucher] = useState([]);
   const [loading, setloading] = useState(false);
+  const [dishID, setDishID] = useState('');
+
   const navigation = useNavigation();
 
   const backPress = () => {
@@ -61,6 +63,10 @@ const HomePage = () => {
       setnewArrival(res?.parameters?.new_arrival[0].dishes);
       setPopular(res?.parameters?.popularofweek);
       setvoucher(res?.parameters?.vouchers[0]);
+      setDishID(res?.parameters?.new_arrival[0].dishes.dish_id);
+
+      console.log('dishIDsssss', dishID);
+      setloading(false);
     } catch (error) {
       console.log('Api error', error);
     } finally {
@@ -127,6 +133,8 @@ const HomePage = () => {
               bestPrice={newArrival.dish_discounts}
               cakeType={'Simplistic'}
               image={newArrival.With_background}
+              dishID={dishID}
+              isHome={true}
             />
           </View>
 
@@ -149,6 +157,7 @@ const HomePage = () => {
                   bestPrice={item.dishes.dish_discounts}
                   image={item.dishes.additional_image_2}
                   rating={item.dishes.dish_rating}
+                  dishID={item.dishes.dish_id}
                 />
               )}
             />

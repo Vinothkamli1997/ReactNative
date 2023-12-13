@@ -124,6 +124,7 @@ const ReferAndEarnHeader = () => {
                 marginHorizontal: 10,
                 backgroundColor: 'lightgray',
                 borderRadius: 10,
+                color: 'black',
               }}>
               {referralID}
             </Text>

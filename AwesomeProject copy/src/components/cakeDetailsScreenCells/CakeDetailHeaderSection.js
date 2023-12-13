@@ -28,20 +28,6 @@ const CakeDetailHeaderSection = () => {
 
   return (
     <View style={styles.headerImageView}>
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: 'bold',
-          color: 'black',
-          paddingHorizontal: 10,
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
-          bottom: 8,
-        }}>
-        Carousel
-      </Text>
-
       <Carousel
         data={caroselImage}
         renderItem={renderItem}
@@ -80,14 +66,15 @@ export default CakeDetailHeaderSection;
 const styles = StyleSheet.create({
   headerImageView: {
     width: '95%',
-    height: 400,
+    height: 410,
     alignSelf: 'center',
-    right: 4,
+    right: 5,
+    marginTop: 2,
   },
   headerImage: {
     width: '100%',
     height: 400,
-    borderRadius: 10,
+    borderRadius: 20,
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -95,7 +82,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     height: 50,
     width: '100%',
-    top: 30,
     paddingHorizontal: 20,
     left: 8,
     position: 'absolute',

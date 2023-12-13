@@ -56,13 +56,31 @@ const WelcomeScreenHeaderSection = ({balance, usedCoin, usedAmount}) => {
           <View
             style={{gap: 20, justifyContent: 'center', paddingHorizontal: 10}}>
             <View>
-              <Text style={{textAlign: 'center'}}>Total Earned Coins</Text>
-              <Text style={{textAlign: 'center'}}>{usedCoin}</Text>
+              <Text style={{textAlign: 'center', color: 'black'}}>
+                Total Earned Coins
+              </Text>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  color: 'black',
+                  fontWeight: 'bold',
+                }}>
+                {usedCoin}
+              </Text>
             </View>
 
             <View>
-              <Text style={{textAlign: 'center'}}>Used Coins</Text>
-              <Text style={{textAlign: 'center'}}>{usedAmount}</Text>
+              <Text style={{textAlign: 'center', color: 'black'}}>
+                Used Coins
+              </Text>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  color: 'black',
+                  fontWeight: 'bold',
+                }}>
+                {usedAmount}
+              </Text>
             </View>
           </View>
         </View>

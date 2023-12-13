@@ -1,9 +1,10 @@
 import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import LogoutSection from '../../components/accountScreenCells/LogoutSection';
 import AccountHeaderSection from '../../components/accountScreenCells/AccountHeaderSection';
 import WalletSection from '../../components/accountScreenCells/WalletSection';
 import AccountSectionList from '../../components/accountScreenCells/AccountSectionList';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AccountScreen = () => {
   const walletList = [
@@ -15,7 +16,7 @@ const AccountScreen = () => {
     {
       name: 'Likes',
       image: 'heart',
-      path: '',
+      path: 'MyFavouriteScreen',
     },
     {
       name: 'Profle',
@@ -76,6 +77,19 @@ const AccountScreen = () => {
       path: 'HelpCenterScreen',
     },
   ];
+
+  const getImage = async () => {
+    try {
+      const uri = await AsyncStorage.getItem('ProfileImageNew');
+      console.log('Image', uri);
+    } catch (error) {
+      console.error('Error reading image URI from AsyncStorage:', error);
+    }
+  };
+
+  useEffect(() => {
+    getImage();
+  }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>

@@ -6,23 +6,19 @@ const TitleSection = ({title}) => {
   const navigation = useNavigation();
 
   const handleGoBack = () => {
+    console.log('Testingggggggggg');
     navigation.goBack();
   };
 
   return (
     <View style={styles.otpView}>
       <TouchableOpacity
+        onPress={handleGoBack}
         style={{
-          marginLeft: 8,
-          width: 40,
-          height: 40,
-          borderWidth: 1,
           borderRadius: 10,
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginHorizontal: 10,
-        }}
-        onPress={handleGoBack}>
+          padding: 6,
+          borderWidth: 1,
+        }}>
         <AntDesign name={'arrowleft'} size={28} color={'black'} />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
@@ -37,7 +33,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    marginTop: 8,
+    padding: 5,
+    backgroundColor: 'white',
+    marginTop: 2,
   },
   title: {
     flex: 1,
@@ -45,7 +43,5 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'black',
   },
-  codeFieldRoot: {marginTop: 20, width: '80%', alignSelf: 'center'},
 });
