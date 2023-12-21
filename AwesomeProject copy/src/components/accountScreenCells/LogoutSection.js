@@ -2,6 +2,7 @@ import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {color} from '../../Constants/Colors';
 
 const LogoutSection = () => {
   const [isLogoutModalVisible, setLogoutModalVisible] = useState(false);
@@ -20,11 +21,15 @@ const LogoutSection = () => {
     setLogoutModalVisible(!isLogoutModalVisible);
 
     // Navigate to the login screen
-    navigation.replace('Login');
+    navigation.replace('SampleLogin');
   };
 
   return (
-    <View>
+    <View
+      style={{
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+      }}>
       <Modal
         visible={isLogoutModalVisible}
         animationType="slide"
@@ -53,7 +58,7 @@ const LogoutSection = () => {
         style={{
           padding: 10,
           marginHorizontal: 10,
-          backgroundColor: 'red',
+          backgroundColor: color.sapmleprimaryColor,
           borderRadius: 10,
           width: 100,
           bottom: 10,
@@ -103,7 +108,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     padding: 10,
-    backgroundColor: 'red',
+    backgroundColor: color.sapmleprimaryColor,
     borderRadius: 10,
   },
   cancelButton: {

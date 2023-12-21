@@ -8,4 +8,6 @@ export const color = {
   speciallyColor: '#B83232',
   premiumColor: '#3097CF',
   basicColor: '#FF8A00',
+
+  sapmleprimaryColor: '#42AEF7',
 };

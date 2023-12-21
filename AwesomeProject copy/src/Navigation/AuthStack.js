@@ -20,20 +20,29 @@ import NewProfileScreen from '../screen/YumboxScreens/NewProfileScreen';
 import CakeDetailsScreen from '../screen/YumboxScreens/CakeDetailsScreen';
 import CakeAddOnScreen from '../screen/YumboxScreens/CakeAddOnScreen';
 import CartSCreen from '../screen/YumboxScreens/CartSCreen';
+import ApplyCouponScreen from '../screen/YumboxScreens/ApplyCouponScreen';
+import OrderSummaryScreen from '../screen/YumboxScreens/OrderSummaryScreen';
+import SampleSplashScree from '../screen/sampleProjectScreens/SampleSplashScree';
+import SampleLoginScreen from '../screen/sampleProjectScreens/SampleLoginScreen';
+import SampleOtpScreen from '../screen/sampleProjectScreens/SampleOtpScreen';
+import SampleHomeScreen from '../screen/sampleProjectScreens/SampleHomeScreen';
+import SampleProjectList from '../screen/sampleProjectScreens/SampleProjectList';
+import SampleProjectListScreen from '../screen/sampleProjectScreens/SampleProjectListScreen';
+import SampleAccountScreen from '../screen/sampleProjectScreens/SampleAccountScreen';
 
 const AuthStack = () => {
   const Stack = createStackNavigator();
 
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="SplashNew"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="OTPScreen" component={OtpScreen} />
-      <Stack.Screen name="Home" component={BottomTabBar} />
+      <Stack.Screen name="SampleHome" component={BottomTabBar} />
       <Stack.Screen name="FlavourScreen" component={FlavourScreen} />
       <Stack.Screen name="OrderHistoryScreen" component={OrderHistoryScreen} />
       <Stack.Screen name="AccountScreen" component={AccountScreen} />
@@ -50,6 +59,23 @@ const AuthStack = () => {
       <Stack.Screen name="CakeDetailsScreen" component={CakeDetailsScreen} />
       <Stack.Screen name="CakeAddOnScreen" component={CakeAddOnScreen} />
       <Stack.Screen name="CartSCreen" component={CartSCreen} />
+      <Stack.Screen name="ApplyCouponScreen" component={ApplyCouponScreen} />
+      <Stack.Screen name="OrderSummaryScreen" component={OrderSummaryScreen} />
+
+      {/* New Sample Project */}
+      <Stack.Screen name="SplashNew" component={SampleSplashScree} />
+      <Stack.Screen name="SampleLogin" component={SampleLoginScreen} />
+      <Stack.Screen name="SampleOtpScreen" component={SampleOtpScreen} />
+      <Stack.Screen
+        name="SampleAccountScreen"
+        component={SampleAccountScreen}
+      />
+
+      {/* <Stack.Screen name="SampleHome" component={SampleHomeScreen} /> */}
+      <Stack.Screen
+        name="SampleProjectListScreen"
+        component={SampleProjectListScreen}
+      />
     </Stack.Navigator>
   );
 };

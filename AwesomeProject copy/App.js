@@ -10,7 +10,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <StatusBar backgroundColor={color.primaryColor} />
+        <StatusBar backgroundColor={color.sapmleprimaryColor} />
         <AuthStack />
       </NavigationContainer>
     </Provider>

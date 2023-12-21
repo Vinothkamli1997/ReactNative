@@ -7,7 +7,14 @@ import MultiAddOnSection from '../../components/cakeAddOnScreenCells/MultiAddOnS
 import NewArrival from '../../components/homeScreen/NewArrival';
 import md5 from 'md5';
 import axios from 'axios';
-import {cakeAddOnApi, saltKey} from '../../api/EndPoints';
+import {
+  apiID,
+  cakeAddOnApi,
+  customerID,
+  merchantID,
+  outletID,
+  saltKey,
+} from '../../api/EndPoints';
 import {useRoute} from '@react-navigation/native';
 
 const CakeAddOnScreen = () => {
@@ -18,7 +25,6 @@ const CakeAddOnScreen = () => {
   const route = useRoute();
 
   const dishID = route.params.dishID;
-  console.log('Addon DIsh ID', dishID);
 
   const dishList = [
     {
@@ -60,19 +66,16 @@ const CakeAddOnScreen = () => {
     try {
       const hashedDishID = md5(saltKey + id);
 
-      console.log('Saltkeyyyyyyyy', hashedDishID);
       const response = await axios.post(cakeAddOnApi, {
-        merchant_id: '1',
+        merchant_id: merchantID,
         auth_token: hashedDishID,
-        outlet_id: '2',
-        customer_id: '27',
-        id: '291',
+        outlet_id: outletID,
+        customer_id: customerID,
+        id: apiID,
         dish_id: id,
       });
 
       const res = response.data;
-
-      console.log('Addon Response ', res);
 
       if (res?.parameters?.dish && res.parameters?.dish?.suggested) {
         setSuggestedList(res.parameters?.dish?.suggested);

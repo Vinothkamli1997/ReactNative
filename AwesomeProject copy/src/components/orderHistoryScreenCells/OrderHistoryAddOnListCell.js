@@ -4,7 +4,7 @@ import React from 'react';
 const OrderHistoryAddOnListCell = ({dishNmae, dishPrice}) => {
   return (
     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-      <Text>{dishNmae}</Text>
+      <Text style={{color: 'gray', fontSize: 12}}>{dishNmae}</Text>
       <Text style={{fontSize: 12, fontWeight: 'bold', color: 'gray'}}>
         ${dishPrice}
       </Text>

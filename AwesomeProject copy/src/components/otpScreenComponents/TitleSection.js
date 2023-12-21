@@ -6,7 +6,6 @@ const TitleSection = ({title}) => {
   const navigation = useNavigation();
 
   const handleGoBack = () => {
-    console.log('Testingggggggggg');
     navigation.goBack();
   };
 

@@ -64,8 +64,6 @@ const HomePage = () => {
       setPopular(res?.parameters?.popularofweek);
       setvoucher(res?.parameters?.vouchers[0]);
       setDishID(res?.parameters?.new_arrival[0].dishes.dish_id);
-
-      console.log('dishIDsssss', dishID);
       setloading(false);
     } catch (error) {
       console.log('Api error', error);

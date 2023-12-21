@@ -11,7 +11,7 @@ const SplashScreen = () => {
       // navigation.replace('OnBoarding');
       checkAsyncStorage();
     }, 1000);
-  });
+  }, []);
 
   const checkAsyncStorage = async () => {
     try {

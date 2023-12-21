@@ -10,8 +10,8 @@ const DrawerNavigation = () => {
     <Drawer.Navigator
       screenOptions={{headerShown: false}}
       useLegacyImplementation={false}
-      initialRouteName="Home">
-      <Drawer.Screen name="Home" component={BottomTabBar} />
+      initialRouteName="SampleHome">
+      <Drawer.Screen name="SampleHome" component={BottomTabBar} />
     </Drawer.Navigator>
   );
 };

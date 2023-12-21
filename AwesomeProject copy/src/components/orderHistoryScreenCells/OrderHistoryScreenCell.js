@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import OrderHistoryDishListCell from './OrderHistoryDishListCell';
+import {useNavigation} from '@react-navigation/native';
 
 const OrderHistoryScreenCell = () => {
   const dishLis = [
@@ -17,6 +18,8 @@ const OrderHistoryScreenCell = () => {
     {name: 'White Forest'},
     {name: 'Mom Specail Ckae'},
   ];
+
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -61,7 +64,8 @@ const OrderHistoryScreenCell = () => {
               </Text>
             </View>
             <TouchableOpacity
-              style={{flexDirection: 'row', alignItems: 'center'}}>
+              style={{flexDirection: 'row', alignItems: 'center'}}
+              onPress={() => navigation.navigate('OrderSummaryScreen')}>
               <Text style={{color: 'red', fontSize: 14}}>View menu</Text>
               <AntDesign name={'caretright'} size={12} color={'red'} />
             </TouchableOpacity>

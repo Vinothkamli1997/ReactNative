@@ -8,6 +8,9 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import AccountScreen from '../screen/YumboxScreens/AccountScreen';
 import Entypo from 'react-native-vector-icons/Entypo';
 import CartSCreen from '../screen/YumboxScreens/CartSCreen';
+import SampleHomeScreen from '../screen/sampleProjectScreens/SampleHomeScreen';
+import {color} from '../Constants/Colors';
+import SampleAccountScreen from '../screen/sampleProjectScreens/SampleAccountScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,28 +21,28 @@ const BottomTabBar = () => {
         headerShown: false,
       }}
       tabBarOptions={{
-        activeTintColor: 'red',
+        activeTintColor: color.sapmleprimaryColor,
         inactiveTintColor: 'gray',
         activeBackgroundColor: 'white',
         inactiveBackgroundColor: 'white',
       }}>
       <Tab.Screen
         name="Home"
-        component={HomePage}
+        component={SampleHomeScreen}
         options={({route}) => ({
           tabBarIcon: ({size, focused}) => {
             return (
-              <FontAwesome
+              <AntDesign
                 name="home"
                 size={18}
-                color={focused ? 'red' : 'gray'}
+                color={focused ? color.sapmleprimaryColor : 'gray'}
               />
             );
           },
         })}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Menu"
         component={MenuScreen}
         initialParams={{cat_ID: '-1'}}
@@ -85,18 +88,18 @@ const BottomTabBar = () => {
             );
           },
         })}
-      />
+      /> */}
 
       <Tab.Screen
         name="Account"
-        component={AccountScreen}
+        component={SampleAccountScreen}
         options={({route}) => ({
           tabBarIcon: ({size, focused}) => {
             return (
               <FontAwesome
                 name="user-o"
                 size={18}
-                color={focused ? 'red' : 'gray'}
+                color={focused ? color.sapmleprimaryColor : 'gray'}
               />
             );
           },

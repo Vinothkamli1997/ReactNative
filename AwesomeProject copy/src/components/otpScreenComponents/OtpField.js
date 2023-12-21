@@ -7,6 +7,7 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {color} from '../../Constants/Colors';
 
 const OtpField = ({mobileNumber}) => {
   const phnnumber = mobileNumber?.number;
@@ -27,7 +28,8 @@ const OtpField = ({mobileNumber}) => {
     console.log('first');
     if (value.length === 4) {
       await AsyncStorage.setItem('someKey', 'true');
-      navigation.replace('Home');
+      // navigation.replace('Home');
+      navigation.replace('SampleHome');
     } else {
       Alert.alert('Enter 4 digit');
     }
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   focusCell: {
-    borderColor: '#000000',
+    borderColor: color.sapmleprimaryColor,
     textAlign: 'center',
   },
   cursor: {
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
   resentBtn: {
     width: 80,
     height: 30,
-    backgroundColor: 'red',
+    backgroundColor: color.sapmleprimaryColor,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -137,10 +139,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red',
+    backgroundColor: color.sapmleprimaryColor,
     width: '80%',
     height: 50,
     marginTop: 40,
     borderRadius: 10,
+  },
+  codeFieldRoot: {
+    borderColor: 'red',
   },
 });

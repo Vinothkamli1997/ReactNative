@@ -10,7 +10,13 @@ import React, {useEffect, useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import md5 from 'md5';
 import axios from 'axios';
-import {saltKey, voucherDetailsApi} from '../../api/EndPoints';
+import {
+  apiID,
+  customerID,
+  outletID,
+  saltKey,
+  voucherDetailsApi,
+} from '../../api/EndPoints';
 import HTML from 'react-native-render-html';
 
 const CakeDetailsOfferSection = ({vouchersName, vouchersCode, dishID}) => {
@@ -20,23 +26,21 @@ const CakeDetailsOfferSection = ({vouchersName, vouchersCode, dishID}) => {
   console.log('DishID', dishID);
 
   const voucherApi = async () => {
-    const hashedDishID = md5(saltKey + '27');
-    console.log('SaltVou', hashedDishID);
+    const hashedDishID = md5(saltKey + customerID);
 
     try {
       const response = await axios.post(voucherDetailsApi, {
         merchant_id: '1',
         auth_token: hashedDishID,
-        outlet_id: '2',
-        customer_id: '27',
-        id: '291',
+        outlet_id: outletID,
+        customer_id: customerID,
+        id: apiID,
         dish_id: dishID,
       });
 
       const res = response.data;
 
       setVoucherDetails(res.parameters.voucher[0].description);
-      console.log('voucherRes', res.parameters.voucher.description);
     } catch (error) {
       console.log('errorVou', error);
     }

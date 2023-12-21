@@ -10,7 +10,8 @@ const SkipButtonSection = () => {
     <TouchableOpacity
       style={styles.skipView}
       onPress={() => {
-        navigation.replace('Login');
+        // navigation.replace('Login');
+        navigation.replace('SampleLogin');
       }}>
       <View style={styles.skipBtn}>
         <Text style={styles.skipText}>Skip</Text>
